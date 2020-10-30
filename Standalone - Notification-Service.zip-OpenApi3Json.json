@@ -1,0 +1,651 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Standalone - Notification-Service",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://wso2.extsrv.com/vamosnotification/v1/notifications",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/push": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "/notifications/push",
+        "operationId": "/notifications/push",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/~1notifications~1pushrequest"
+              },
+              "example": {
+                "customers": [
+                  {
+                    "id": "mk10016333",
+                    "notifications": [
+                      {
+                        "id": 111,
+                        "params": {
+                          "subject": "test for specific notification"
+                        }
+                      }
+                    ],
+                    "params": {
+                      "content": "Time to trade !",
+                      "sentDataTime": "2020-01-28 14:07:10",
+                      "subject": "test",
+                      "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+                    }
+                  }
+                ],
+                "params": {
+                  "sendingDate": "2020-01-12T00:00:00Z"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "/notifications/push/{customerId}",
+        "operationId": "/notifications/push/{customerId}",
+        "parameters": [
+          {
+            "name": "tpid",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "mk10016333"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/webPush": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "/notifications/webPush",
+        "operationId": "/notifications/webPush",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/~1notifications~1webPushRequest"
+              },
+              "example": {
+                "customers": [
+                  {
+                    "id": "mk10016333",
+                    "notifications": [
+                      {
+                        "id": 100,
+                        "params": {
+                          "subject": "test for specific notification"
+                        }
+                      }
+                    ],
+                    "params": {
+                      "subject": "test for specific notification",
+                      "content": "Time to trade ! web push",
+                      "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+                    }
+                  }
+                ],
+                "params": {
+                  "sendingDate": "2020-01-12T00:00:00Z"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "/notifications/webPush/{customerId}",
+        "operationId": "/notifications/webPush/{customerId}",
+        "parameters": [
+          {
+            "name": "tpid",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "mk10016333"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/inPlatformMessage": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "/notifications/inPlatform",
+        "operationId": "/notifications/inPlatform",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/~1notifications~1inPlatformRequest"
+              },
+              "example": {
+                "customers": [
+                  {
+                    "id": "mk10016333",
+                    "notifications": [
+                      {
+                        "id": 109,
+                        "params": {
+                          "subject": "test for specific notification"
+                        }
+                      }
+                    ],
+                    "params": {
+                      "content": "Time to trade ! inplatfom",
+                      "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+                    }
+                  }
+                ],
+                "params": {
+                  "sendingDate": "2020-01-12T00:00:00Z"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "/notifications/inPlatform/{customerId}",
+        "operationId": "/notifications/inPlatform/{customerId}",
+        "parameters": [
+          {
+            "name": "tpid",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "mk10016333"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "/notifications/pushrequest": {
+        "title": "/notifications/pushrequest",
+        "required": [
+          "customers",
+          "params"
+        ],
+        "type": "object",
+        "properties": {
+          "customers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Customer"
+            },
+            "description": ""
+          },
+          "params": {
+            "$ref": "#/components/schemas/Params2"
+          }
+        },
+        "example": {
+          "customers": [
+            {
+              "id": "mk10016333",
+              "notifications": [
+                {
+                  "id": 111,
+                  "params": {
+                    "subject": "test for specific notification"
+                  }
+                }
+              ],
+              "params": {
+                "content": "Time to trade !",
+                "sentDataTime": "2020-01-28 14:07:10",
+                "subject": "test",
+                "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+              }
+            }
+          ],
+          "params": {
+            "sendingDate": "2020-01-12T00:00:00Z"
+          }
+        }
+      },
+      "Customer": {
+        "title": "Customer",
+        "required": [
+          "id",
+          "notifications",
+          "params"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "description": ""
+          },
+          "params": {
+            "$ref": "#/components/schemas/Params1"
+          }
+        },
+        "example": {
+          "id": "mk10016333",
+          "notifications": [
+            {
+              "id": 111,
+              "params": {
+                "subject": "test for specific notification"
+              }
+            }
+          ],
+          "params": {
+            "content": "Time to trade !",
+            "sentDataTime": "2020-01-28 14:07:10",
+            "subject": "test",
+            "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+          }
+        }
+      },
+      "Notification": {
+        "title": "Notification",
+        "required": [
+          "id",
+          "params"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "params": {
+            "$ref": "#/components/schemas/Params"
+          }
+        },
+        "example": {
+          "id": 111,
+          "params": {
+            "subject": "test for specific notification"
+          }
+        }
+      },
+      "Params": {
+        "title": "Params",
+        "required": [
+          "subject"
+        ],
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "subject": "test for specific notification"
+        }
+      },
+      "Params1": {
+        "title": "Params1",
+        "required": [
+          "content",
+          "sentDataTime",
+          "subject",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "sentDataTime": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "content": "Time to trade !",
+          "sentDataTime": "2020-01-28 14:07:10",
+          "subject": "test",
+          "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+        }
+      },
+      "Params2": {
+        "title": "Params2",
+        "required": [
+          "sendingDate"
+        ],
+        "type": "object",
+        "properties": {
+          "sendingDate": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "sendingDate": "2020-01-12T00:00:00Z"
+        }
+      },
+      "/notifications/webPushRequest": {
+        "title": "/notifications/webPushRequest",
+        "required": [
+          "customers",
+          "params"
+        ],
+        "type": "object",
+        "properties": {
+          "customers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Customer1"
+            },
+            "description": ""
+          },
+          "params": {
+            "$ref": "#/components/schemas/Params2"
+          }
+        },
+        "example": {
+          "customers": [
+            {
+              "id": "mk10016333",
+              "notifications": [
+                {
+                  "id": 100,
+                  "params": {
+                    "subject": "test for specific notification"
+                  }
+                }
+              ],
+              "params": {
+                "subject": "test for specific notification",
+                "content": "Time to trade ! web push",
+                "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+              }
+            }
+          ],
+          "params": {
+            "sendingDate": "2020-01-12T00:00:00Z"
+          }
+        }
+      },
+      "Customer1": {
+        "title": "Customer1",
+        "required": [
+          "id",
+          "notifications",
+          "params"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "description": ""
+          },
+          "params": {
+            "$ref": "#/components/schemas/Params4"
+          }
+        },
+        "example": {
+          "id": "mk10016333",
+          "notifications": [
+            {
+              "id": 100,
+              "params": {
+                "subject": "test for specific notification"
+              }
+            }
+          ],
+          "params": {
+            "subject": "test for specific notification",
+            "content": "Time to trade ! web push",
+            "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+          }
+        }
+      },
+      "Params4": {
+        "title": "Params4",
+        "required": [
+          "subject",
+          "content",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "subject": "test for specific notification",
+          "content": "Time to trade ! web push",
+          "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+        }
+      },
+      "/notifications/inPlatformRequest": {
+        "title": "/notifications/inPlatformRequest",
+        "required": [
+          "customers",
+          "params"
+        ],
+        "type": "object",
+        "properties": {
+          "customers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Customer2"
+            },
+            "description": ""
+          },
+          "params": {
+            "$ref": "#/components/schemas/Params2"
+          }
+        },
+        "example": {
+          "customers": [
+            {
+              "id": "mk10016333",
+              "notifications": [
+                {
+                  "id": 109,
+                  "params": {
+                    "subject": "test for specific notification"
+                  }
+                }
+              ],
+              "params": {
+                "content": "Time to trade ! inplatfom",
+                "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+              }
+            }
+          ],
+          "params": {
+            "sendingDate": "2020-01-12T00:00:00Z"
+          }
+        }
+      },
+      "Customer2": {
+        "title": "Customer2",
+        "required": [
+          "id",
+          "notifications",
+          "params"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "description": ""
+          },
+          "params": {
+            "$ref": "#/components/schemas/Params7"
+          }
+        },
+        "example": {
+          "id": "mk10016333",
+          "notifications": [
+            {
+              "id": 109,
+              "params": {
+                "subject": "test for specific notification"
+              }
+            }
+          ],
+          "params": {
+            "content": "Time to trade ! inplatfom",
+            "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+          }
+        }
+      },
+      "Params7": {
+        "title": "Params7",
+        "required": [
+          "content",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "content": "Time to trade ! inplatfom",
+          "url": "cosmos://trade?platform=LIVE&symbol=EUR/USD"
+        }
+      }
+    },
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
+}
